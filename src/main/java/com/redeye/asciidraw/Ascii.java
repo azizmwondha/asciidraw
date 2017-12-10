@@ -55,7 +55,7 @@ public class Ascii
                     int x2,
                     int y2)
     {
-        fill(y1, x2, y2, x1);
+        fill(x1, y1, x2, y2);
     }
 
     public void path(int[][] vertices)
@@ -115,13 +115,12 @@ public class Ascii
         canvas.fill(c);
     }
 
-    private void fill(
+    private void fill(int left, 
             int top,
             int right,
-            int bottom,
-            int left)
+            int bottom)
     {
-        canvas.fill(top, right, bottom, left, pen);
+        canvas.fill(left, top, right, bottom, pen);
     }
 
     public void plot(double x,

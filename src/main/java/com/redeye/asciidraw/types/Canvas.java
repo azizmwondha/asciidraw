@@ -72,14 +72,14 @@ public class Canvas
 
     public void fill(char pen)
     {
-        fill(clipTop, clipRight, clipBottom, clipLeft, pen);
+        fill(clipLeft, clipTop, clipRight, clipBottom, pen);
     }
 
     public void fill(
+            int left,
             int top,
             int right,
             int bottom,
-            int left,
             char pen)
     {
         for (int y = top; y < bottom; y++)
@@ -91,10 +91,9 @@ public class Canvas
         }
     }
 
-    public void clip(int top,
+    public void clip(int left, int top,
                      int right,
-                     int bottom,
-                     int left)
+                     int bottom)
     {
         clipTop = limitTo(top, 0, height() - 1);
         clipBottom = limitTo(height() - bottom, clipTop + 1, height());
