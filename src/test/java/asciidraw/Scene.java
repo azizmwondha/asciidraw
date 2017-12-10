@@ -1,5 +1,6 @@
-package com.redeye.asciidraw;
+package asciidraw;
 
+import com.redeye.asciidraw.Ascii;
 import com.redeye.asciidraw.gfx.AsciiPanel;
 import com.redeye.asciidraw.types.AsciiMap;
 import com.redeye.asciidraw.types.Oval;
