@@ -18,10 +18,15 @@ public class AsciiMap
         extends AsciiArt
 {
 
+    public AsciiMap()
+    {
+        this(1, 1);
+    }
+
     public AsciiMap(int width,
                     int height)
     {
-        super(10, 8);
+        super(1, 1);
     }
 
     public void load(InputStream is)
@@ -33,32 +38,31 @@ public class AsciiMap
         try (Scanner s = new Scanner(is))
         {
             s.useDelimiter("\n");
-            while (s.hasNext())
+            while (s.hasNext() && (h < buffer.length))
             {
                 String line = s.next();
-                if ((xlimit == buffer[0].length) && (line.length() < xlimit))
+                if (line.length()<2)
+                {
+                    // We don't support ASCII maps narrower
+                    // than 2 pixels wide;
+                    break;
+                }
+                if ((line.length() < xlimit))
                 {
                     xlimit = line.length();
                 }
-                if (h < buffer.length)
+                for (w = 0; w < xlimit; w++)
                 {
-                    for (w = 0; w < xlimit; w++)
-                    {
-                        buffer[h][w] = line.charAt(w);
-                    }
-                    h++;
+                    buffer[h][w] = line.charAt(w);
                 }
-                else
-                {
-                    break;
-                }
+                h++;
             }
+            w--; // beacause we're off by one after the for loop
         }
-
-        canvas().resize(xlimit, h - 1);
-        canvas().blit(buffer, 0, 0, xlimit, h - 1);
+        resize(w, h);
+        canvas().blit(buffer, 0, 0, w, h);
     }
-    
+
     @Override
     public void draw(Ascii ascii)
     {
