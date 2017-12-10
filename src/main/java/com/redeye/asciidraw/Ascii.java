@@ -33,6 +33,12 @@ public class Ascii
         children = new ConcurrentSkipListSet<>(new ZIndexComparator());
     }
 
+    public void resize(int width,
+                       int height)
+    {
+        canvas.resize(width, height);
+    }
+
     public void add(AsciiArt art)
     {
         children.add(art);
@@ -135,7 +141,6 @@ public class Ascii
                      int bottom,
                      int left)
     {
-
         canvas.clip(top, right, bottom, left);
     }
 
@@ -153,7 +158,6 @@ public class Ascii
     {
         if (!children.isEmpty())
         {
-//            fill(background);
             for (AsciiArt art : children)
             {
                 art(art);
