@@ -17,7 +17,6 @@ public abstract class AsciiArt
     private final Ascii ascii;
     private final Canvas canvas;
     private int x, y, z;
-    private boolean visible;
     private char pen;
     private char background;
 
@@ -26,17 +25,37 @@ public abstract class AsciiArt
             int height)
     {
         canvas = new Canvas(width, height);
-        visible = true;
         ascii = new Ascii(canvas);
-        pen='+';
-        background='\0';
+        pen = '+';
+        background = '\0';
     }
-    
-    public void pen(char c){pen=c;}
-    public void background(char c){background=c;}
-    
-    protected char pen(){return pen;}
-    protected char background(){return background;}
+
+    public void resize(int width,
+                       int height)
+    {
+        canvas.resize(width, height);
+        ascii.resize(width, height);
+    }
+
+    public void pen(char c)
+    {
+        pen = c;
+    }
+
+    public void background(char c)
+    {
+        background = c;
+    }
+
+    protected char pen()
+    {
+        return pen;
+    }
+
+    protected char background()
+    {
+        return background;
+    }
 
     public final AsciiArt move(int x,
                                int y)
@@ -61,10 +80,7 @@ public abstract class AsciiArt
 
     public final void update()
     {
-//        if (visible)
-        {
-            draw(ascii);
-        }
+        draw(ascii);
     }
 
     public final int x()
