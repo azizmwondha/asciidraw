@@ -24,8 +24,10 @@ public class Canvas
         clipLeft = 0;
         clipRight = width;
     }
+
     public void resize(int width,
-                  int height){
+                       int height)
+    {
         canvas = new char[height][width];
     }
 
@@ -144,7 +146,7 @@ public class Canvas
         {
             System.out.println(new String(canvas[y]).replace('\0', ' '));
         }
-        System.out.println("w/h " +width() + "/"+height() + " clip trbl " + clipTop + ","+ clipRight + ","+ clipBottom + ","+ clipLeft);
+        System.out.println("w/h " + width() + "/" + height() + " clip trbl " + clipTop + "," + clipRight + "," + clipBottom + "," + clipLeft);
     }
 
     public final int width()
